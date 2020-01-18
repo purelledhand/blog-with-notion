@@ -15,8 +15,6 @@ const normalizeUuid = id => {
   )}-${id.substr(20)}`
 }
 
-console.log(normalizeUuid(BLOG_ID));
-
 const NOTION_TOKEN = TOKEN;
 const BLOG_UUID = normalizeUuid(BLOG_ID);
 const API_ENDPOINT = 'https://www.notion.so/api/v3/loadPageChunk';
