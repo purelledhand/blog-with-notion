@@ -2,7 +2,6 @@ const fetch = require('node-fetch');
 const { BLOG_UUID, API_ENDPOINT, NOTION_TOKEN } = require('./manifest');
 
 async function getBlogPage() {
-    let posts = [];
     const res = await fetch(`${API_ENDPOINT}`, {
         method: 'POST',
         headers: {
