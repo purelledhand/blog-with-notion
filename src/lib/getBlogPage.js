@@ -10,7 +10,7 @@ async function getBlogPage() {
         },
         body: JSON.stringify({
             pageId: BLOG_UUID,
-            limit: 4,
+            limit: 10,
             cursor: { stack: [] },
             chunkNumber: 0,
             verticalColumns: false,
@@ -18,12 +18,9 @@ async function getBlogPage() {
     });
 
     if(res.ok) {
-        return res.json().then(json => json.recordMap.block[BLOG_UUID].value.content);
+        const posts = await res.json();
+        return Object.values(posts.recordMap.collection_view)[0].value.page_sort;
     }
 }
 
-getBlogPage().then(res => {
-    console.log(res);
-});
-
-module.exports = {getBlogPage};
+module.exports = { getBlogPage };
