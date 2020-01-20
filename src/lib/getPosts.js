@@ -30,14 +30,21 @@ async function getPostContents() {
             try {
                 return contentIds.map(id => {
                     const body = postContents.recordMap.block[id].value;
+                    let mdObject = {"type": body.type};
                     if('properties' in body && 'title' in body.properties) {
-                        return {
-                            "type": body.type,
+                        mdObject =  {
+                            ...mdObject,
                             "title": body.properties.title[0][0]
                         };
                     }
+                    else if(body.type==="image") {
+                        mdObject = {
+                            ...mdObject,
+                            "source": body.properties.source[0][0]
+                        }
+                    }
 
-                    return null;
+                    return mdObject;
                 });
             } catch (e) {
                 return null;
@@ -50,4 +57,4 @@ async function getPostContents() {
 
 getPostContents()
     .then(r => console.log(r))
-    .catch(e => console.log('C'));
+    .catch(e => console.log(e));
