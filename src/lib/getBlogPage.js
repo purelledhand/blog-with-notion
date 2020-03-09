@@ -1,3 +1,6 @@
+/******************************************/
+/* 블로그 테이블 내 각 페이지들의 UUID를 반환합니다. */ 
+/******************************************/
 const fetch = require('node-fetch');
 const { BLOG_UUID, API_ENDPOINT, NOTION_TOKEN } = require('./manifest');
 
@@ -24,3 +27,8 @@ async function getBlogPage() {
 }
 
 module.exports = { getBlogPage };
+
+
+getBlogPage()
+    .then(r => console.log(r))
+    .catch(e => console.log(e));

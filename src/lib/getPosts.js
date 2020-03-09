@@ -1,6 +1,9 @@
+/********************************************/
+/* 포스트 내 블록들의 마크다운 타입과 내용을 반환합니다. */ 
+/********************************************/
 const fetch = require('node-fetch');
 const {getBlogPage} = require('./getBlogPage');
-const {callNotionApi} = require('./callNotionApi');
+//const {callNotionApi} = require('./callNotionApi');
 const { API_ENDPOINT, NOTION_TOKEN } = require('./manifest');
 
 async function getPostContents() {
