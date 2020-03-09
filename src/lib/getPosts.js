@@ -27,11 +27,15 @@ async function getPostContents() {
 
         if(res.ok) {
             let postContents = await res.json();
-            
+            let postObject = {}
+            if('properties' in postContents.recordMap.block[post].value && 'title' in postContents.recordMap.block[post].value.properties) {
+                postObject = {
+                    "postTitle": postContents.recordMap.block[post].value.properties.title[0][0]
+                }
+            }
             const contentIds = postContents.recordMap.block[post].value.content;
-            
             try {
-                return contentIds.map(id => {
+                let contentsObject = contentIds.map(id => {
                     const body = postContents.recordMap.block[id].value;
                     let mdObject = {"type": body.type};
                     if('properties' in body && 'title' in body.properties) {
@@ -49,6 +53,13 @@ async function getPostContents() {
 
                     return mdObject;
                 });
+
+                postObject = {
+                    ...postObject,
+                    contentsObject
+                }
+
+                return postObject;
             } catch (e) {
                 return null;
             }
