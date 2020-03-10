@@ -7,9 +7,17 @@
     background: #fffdfc;
     box-shadow:  20px 20px 60px #d9d7d6, 
     -20px -20px 60px #ffffff;
-    margin-bottom: 45px;
+    margin-bottom: 35px;
     padding: 28px;
     box-sizing: border-box;
+    transition-duration: 0.3s;
+}
+
+.PreviewCard:hover {
+    cursor: pointer;
+    background: #f1f1ff;
+    box-shadow:  20px 20px 60px #cdcdd9, 
+    -20px -20px 60px #ffffff;
 }
 
 .preview_title {
