@@ -18,7 +18,7 @@ async function getPostContents() {
             },
             body: JSON.stringify({
                 pageId: post,
-                limit: 10,
+                limit: 100,
                 cursor: { stack: [] },
                 chunkNumber: 0,
                 verticalColumns: false,
@@ -28,14 +28,17 @@ async function getPostContents() {
         if(res.ok) {
             let postContents = await res.json();
             let postObject = {}
-            if('properties' in postContents.recordMap.block[post].value && 'title' in postContents.recordMap.block[post].value.properties) {
+            const postBody = postContents.recordMap.block[post].value
+            if('properties' in postBody && 'title' in postBody.properties) {
                 postObject = {
-                    "postTitle": postContents.recordMap.block[post].value.properties.title[0][0]
+                    "postTitle": postBody.properties.title[0][0]
                 }
             }
             const contentIds = postContents.recordMap.block[post].value.content;
             try {
-                let contentsObject = contentIds.map(id => {
+                let contentsObject = []
+                contentsObject = contentIds.map(id => {
+                    if(postContents.recordMap.block[id] === undefined) return;
                     const body = postContents.recordMap.block[id].value;
                     let mdObject = {"type": body.type};
                     if('properties' in body && 'title' in body.properties) {
@@ -50,15 +53,15 @@ async function getPostContents() {
                             "source": body.properties.source[0][0]
                         }
                     }
-
+                    //console.log(mdObject)
                     return mdObject;
                 });
-
+                
                 postObject = {
                     ...postObject,
                     contentsObject
                 }
-
+                
                 return postObject;
             } catch (e) {
                 return null;

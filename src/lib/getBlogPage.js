@@ -27,8 +27,3 @@ async function getBlogPage() {
 }
 
 module.exports = { getBlogPage };
-
-
-getBlogPage()
-    .then(r => console.log(r))
-    .catch(e => console.log(e));
