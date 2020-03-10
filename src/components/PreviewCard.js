@@ -6,9 +6,9 @@ function PreviewCard(Props) {
 
   return (
     <div className="PreviewCard">
-        <div className="preview_title">
+        <h3 className="preview_title">
             {postTitle}
-        </div>
+        </h3>
         <div className="preview_contents">
             {contents}
         </div>

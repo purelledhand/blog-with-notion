@@ -1,6 +1,6 @@
 .PreviewCard {
     width: 720px;
-    height: 180px;
+    height: 175px;
     display: flex;
     flex-direction: column;
     border-radius: 10px;
@@ -21,9 +21,8 @@
 }
 
 .preview_title {
-    font-size: 20px;
-    font-weight: bold;
     margin-bottom: 15px;
+    margin-top: 0;
 }
 
 .preview_contents {
