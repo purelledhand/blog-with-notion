@@ -1,10 +1,10 @@
-.Header {
+.Footer {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-}
-
-.header_subtitle {
+    font-size: 90%;
     color: #444;
+    margin-top: 50px;
+    margin-bottom: 50px;
 }
